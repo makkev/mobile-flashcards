@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, Platform } from 'react-native';
 import DeckList from './components/DeckList';
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { purple, white, blue } from './utils/colors';
 import DeckNew from './components/DeckNew';
+import DeckIndividual from './components/DeckIndividual';
 
 const Tabs = TabNavigator({
   DeckList: {
@@ -45,12 +46,31 @@ const Tabs = TabNavigator({
   }
 )
 
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: Tabs,
+    navigationOptions: {
+      header: null,
+    }
+  },
+  DeckIndividual: {
+    screen: DeckIndividual,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
+  }
+})
+
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Tabs />
+        <MainNavigator />
+        {/*<Tabs />*/}
         {/*<DeckList/>*/}
       </View>
     );

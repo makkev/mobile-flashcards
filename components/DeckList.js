@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet }  from 'react-native';
+import { Text, View, StyleSheet, Button }  from 'react-native';
 import { getData } from '../utils/api';
 
 export default class DeckList extends React.Component {
@@ -13,6 +13,10 @@ export default class DeckList extends React.Component {
             <View key={deckKey}>
               <Text>{title}</Text>
               <Text>{questions.length}</Text>
+              <Button 
+                onPress={() => this.props.navigation.navigate('DeckIndividual', { deckKey })} 
+                title='View Deck'>
+              </Button>
             </View>
           )
         })}
