@@ -1,4 +1,6 @@
-const data = {
+import { AsynchStorage } from 'react-native'
+
+const sampleData = {
   React: {
     title: 'React',
     questions: [
@@ -23,4 +25,20 @@ const data = {
   }
 }
 
-export const getData = () => data;
+export const getData = () => sampleData;
+
+export const getDecks = key => 
+  AsynchStorage.getItem(DATA_STORAGE_KEY)
+    .then(results =>
+      !results 
+        ? AsynchStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(sampleData))
+        : JSON.parse(results)
+    );
+
+export const saveDeckTitle = title =>
+  AsynchStorage.getItem(DATA_STORAGE_KEY, JSON.stringify({
+    [title]: {
+      title,
+      questions: [],
+    }
+  }));
