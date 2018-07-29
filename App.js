@@ -1,4 +1,7 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import reducer from './reducers';
+import { createStore } from 'redux';
 import { StyleSheet, Text, View, Platform } from 'react-native';
 import DeckList from './components/DeckList';
 import { TabNavigator, StackNavigator } from 'react-navigation';
@@ -67,12 +70,13 @@ const MainNavigator = StackNavigator({
 
 export default class App extends React.Component {
   render() {
+    store = createStore(reducer);
     return (
-      <View style={styles.container}>
-        <MainNavigator />
-        {/*<Tabs />*/}
-        {/*<DeckList/>*/}
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          <MainNavigator />
+        </View>
+      </Provider>
     );
   }
 }

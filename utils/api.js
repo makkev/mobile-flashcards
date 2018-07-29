@@ -1,4 +1,5 @@
 import { AsynchStorage } from 'react-native'
+const DATA_STORAGE_KEY = 'KM: data';
 
 const sampleData = {
   React: {
@@ -27,13 +28,15 @@ const sampleData = {
 
 export const getData = () => sampleData;
 
-export const getDecks = key => 
+export function getDecks () {
   AsynchStorage.getItem(DATA_STORAGE_KEY)
-    .then(results =>
-      !results 
+    .then(results => {
+      // console.log(results);
+      return results === null 
         ? AsynchStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(sampleData))
         : JSON.parse(results)
-    );
+    });
+} 
 
 export const saveDeckTitle = title =>
   AsynchStorage.getItem(DATA_STORAGE_KEY, JSON.stringify({
