@@ -7,7 +7,10 @@ import {
 function deck (state = {}, action ) {
   switch (action.type) {
     case RECEIVE_DECKS:
-      return { ...state, ...action.decks }
+      return {
+        ...state,
+        decks: action.decks
+      }
 
     case DECK_NEW:
       return {

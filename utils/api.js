@@ -1,5 +1,6 @@
-import { AsynchStorage } from 'react-native'
-const DATA_STORAGE_KEY = 'KM: data';
+import { AsyncStorage } from 'react-native'
+// import { sample } from '../node_modules/rxjs/operator/sample';
+const DATA_STORAGE_KEY = 'KM: decks';
 
 const sampleData = {
   React: {
@@ -26,22 +27,13 @@ const sampleData = {
   }
 }
 
-export const getData = () => sampleData;
+// export const getData = () => sampleData;
+
+// export function getDecks () {
+//   AsyncStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(sampleData));
+//   return(sampleData);
+// }
 
 export function getDecks () {
-  AsynchStorage.getItem(DATA_STORAGE_KEY)
-    .then(results => {
-      // console.log(results);
-      return results === null 
-        ? AsynchStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(sampleData))
-        : JSON.parse(results)
-    });
-} 
-
-export const saveDeckTitle = title =>
-  AsynchStorage.getItem(DATA_STORAGE_KEY, JSON.stringify({
-    [title]: {
-      title,
-      questions: [],
-    }
-  }));
+  return AsyncStorage.getItem(DATA_STORAGE_KEY).then(items => JSON.parse(items));
+}

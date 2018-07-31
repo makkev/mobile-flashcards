@@ -6,18 +6,15 @@ import { receiveDecks } from '../actions/index';
 
 class DeckList extends React.Component {
   componentDidMount() {
-    console.log('in component did mount');
-    // getDecks()
-    // .then(decks => this.props.receiveAllDecks(decks));
+    getDecks().then(decks => this.props.receiveAllDecks(decks));
   }
   render() {
-    const decks = getData();
 
-    // const { decks }  = this.props;
-    // console.log(decks);
+    const { decks } = this.props;
     return (
       <View style={styles.container}>
-        {Object.keys(decks).map(deckKey => {
+
+        {decks && Object.keys(decks).map(deckKey => {
           const { title, questions } = decks[deckKey];
           return (
             <View key={deckKey}>
@@ -47,10 +44,10 @@ function mapStateToProps (decks) {
   return decks;
 }
 
-// function mapDispatchToProps (dispatch) {
-//   return { receiveAllDecks: decks => dispatch(receiveDecks(decks)) }
-// }
+function mapDispatchToProps (dispatch) {
+  return { receiveAllDecks: decks => dispatch(receiveDecks(decks)) }
+}
  
 
-// export default connect(mapStateToProps, mapDispatchToProps)(DeckList);
-export default connect()(DeckList);
+export default connect(mapStateToProps, mapDispatchToProps)(DeckList);
+// export default connect()(DeckList);
