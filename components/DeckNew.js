@@ -14,7 +14,7 @@ class DeckNew extends React.Component {
     const { title } = this.state;
     createDeck(title);
     this.props.dispatch(deckNew(title));
-    this.props.navigation.navigate('DeckIndividual', { title })
+    this.props.navigation.navigate('DeckIndividual', { deckKey: title })
     this.setState({ title: '' });
   }
 
@@ -67,4 +67,10 @@ const styles = StyleSheet.create({
 
 });
 
-export default connect()(DeckNew);
+function mapStateToProps (decks) {
+  return {
+    decks
+  }
+}
+
+export default connect(mapStateToProps)(DeckNew);

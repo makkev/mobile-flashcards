@@ -7,16 +7,17 @@ import {
 function deck (state = {}, action ) {
   switch (action.type) {
     case RECEIVE_DECKS:
-      return {
-        ...state,
-        decks: action.decks
-      }
+      // return { ...action.decks }
+      return { ...state, ... action.decks } 
 
     case DECK_NEW:
-      return {
+      result = {
         ...state,
         ...{ [action.deckKey] : { title: action.deckKey, questions: [] } }
       }
+      // console.log('**********');
+      // console.log(result);
+      return result;
 
     case ADD_CARD:
       const { question, answer, deckKey } = action.card;
@@ -25,8 +26,8 @@ function deck (state = {}, action ) {
       return {
         ...state,
         [deckKey] : {
-          ...state.decks[deckKey],
-          questions: [...state.decks[deckKey].questions, { question, answer }]
+          ...state[deckKey],
+          questions: [...state[deckKey].questions, { question, answer }]
         }
       }
 

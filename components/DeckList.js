@@ -51,7 +51,7 @@ function mapStateToProps (decks) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return { receiveAllDecks: decks => dispatch(receiveDecks(decks)) }
+  return { receiveAllDecks: decks => dispatch(receiveDecks({ decks })) }
 }
  
 
