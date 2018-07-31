@@ -10,7 +10,7 @@ class DeckList extends React.Component {
   }
   render() {
 
-    console.log(this.props);
+    // console.log(this.props);
     const { decks } = this.props;
     return (
       <View style={styles.container}>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 //   return { decks: state.decks };
 // }
 function mapStateToProps (decks) {
-  return {decks};
+  return { decks };
 }
 
 // function mapDispatchToProps (dispatch) {

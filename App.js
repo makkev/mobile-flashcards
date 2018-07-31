@@ -10,6 +10,7 @@ import { purple, white, blue } from './utils/colors';
 import DeckNew from './components/DeckNew';
 import DeckIndividual from './components/DeckIndividual';
 import AddCard from './components/AddCard';
+import Quiz from './components/Quiz';
 
 const Tabs = TabNavigator({
   DeckList: {
@@ -76,6 +77,16 @@ const MainNavigator = StackNavigator({
         }
       }
   },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      title: 'Quiz',
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'purple',
+      }
+    }
+  }
 })
 
 
