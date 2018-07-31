@@ -105,4 +105,7 @@ const styles = StyleSheet.create({
 
 })
 
-export default connect()(AddCard);
+function mapStateToProps (state) {
+  return { decks: state.decks };
+}
+export default connect(mapStateToProps)(AddCard);

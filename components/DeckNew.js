@@ -67,10 +67,10 @@ const styles = StyleSheet.create({
 
 });
 
-function mapStateToProps (decks) {
-  return {
-    decks
-  }
-}
+// function mapStateToProps ({decks}) {
+//   return {
+//     decks
+//   }
+// }
 
-export default connect(mapStateToProps)(DeckNew);
+export default connect()(DeckNew);

@@ -5,15 +5,21 @@ import {
 } from '../actions/index';
 
 function deck (state = {}, action ) {
+  let deck;
   switch (action.type) {
     case RECEIVE_DECKS:
+      // console.log(action.decks);
       // return { ...action.decks }
-      return { ...state, ... action.decks } 
+      return { 
+        ...state,
+        decks: { ...action.decks }
+      } 
 
     case DECK_NEW:
+      deck = {[action.deckKey]: {title: action.deckKey, questions: []}}
       result = {
         ...state,
-        ...{ [action.deckKey] : { title: action.deckKey, questions: [] } }
+        decks: {...state.decks, ...deck}         
       }
       // console.log('**********');
       // console.log(result);

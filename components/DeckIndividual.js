@@ -7,8 +7,12 @@ import { purple, white, red } from '../utils/colors';
 
 class DeckIndividual extends React.Component {
   render() {
+
     const { deckKey } = this.props.navigation.state.params;
     const { decks } = this.props; 
+    // console.log('****deckindividual');
+    // console.log(this.props);
+    // console.log(deckKey);
     return (
       <View style={styles.container}>
         <Text>{decks[deckKey].title}</Text>
@@ -52,10 +56,13 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps (decks) {
-  return {
-    decks
-  }
+// function mapStateToProps (decks) {
+//   return {
+//     decks
+//   }
+// }
+function mapStateToProps (state) {
+  return { decks: state.decks };
 }
 
 export default connect(mapStateToProps)(DeckIndividual);

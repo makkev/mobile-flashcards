@@ -6,10 +6,11 @@ import { receiveDecks } from '../actions/index';
 
 class DeckList extends React.Component {
   componentDidMount() {
-    getDecks().then(decks => this.props.receiveAllDecks(decks));
+    getDecks().then(decks => this.props.receiveDecks(decks));
   }
   render() {
 
+    console.log(this.props);
     const { decks } = this.props;
     return (
       <View style={styles.container}>
@@ -46,14 +47,14 @@ const styles = StyleSheet.create({
   }
 });
 
-function mapStateToProps (decks) {
-  return decks;
+function mapStateToProps (state) {
+  return { decks: state.decks };
 }
 
-function mapDispatchToProps (dispatch) {
-  return { receiveAllDecks: decks => dispatch(receiveDecks({ decks })) }
-}
+// function mapDispatchToProps (dispatch) {
+//   return { receiveAllDecks: decks => dispatch(receiveDecks(decks)) }
+// }
  
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeckList);
+export default connect(mapStateToProps, { receiveDecks })(DeckList);
 // export default connect()(DeckList);
