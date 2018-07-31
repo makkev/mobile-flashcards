@@ -12,23 +12,22 @@ function deck (state = {}, action ) {
       // return { ...action.decks }
       return { 
         ...state,
-        decks: { ...action.decks }
+        ...action.decks
       } 
 
     case DECK_NEW:
-      deck = {[action.deckKey]: {title: action.deckKey, questions: []}}
-      result = {
+      // deck = {[action.deckKey]: {title: action.deckKey, questions: []}}
+      return {
         ...state,
-        decks: {...state.decks, ...deck}         
+        ...{ [action.deckKey] : { title: action.deckKey, questions: [] } }
       }
-      // console.log('**********');
-      // console.log(result);
-      return result;
+      // return  {
+      //   ...state,
+      //   decks: {...state.decks, ...deck}         
+      // }
 
     case ADD_CARD:
       const { question, answer, deckKey } = action.card;
-      console.log(action.card);
-      console.log(state);
       return {
         ...state,
         [deckKey] : {

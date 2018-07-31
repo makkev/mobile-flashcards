@@ -12,7 +12,7 @@ class DeckNew extends React.Component {
 
   submitName = () => {
     const { title } = this.state;
-    createDeck(title);
+    // createDeck(title);
     this.props.dispatch(deckNew(title));
     this.props.navigation.navigate('DeckIndividual', { deckKey: title })
     this.setState({ title: '' });

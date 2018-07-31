@@ -10,8 +10,8 @@ class DeckIndividual extends React.Component {
 
     const { deckKey } = this.props.navigation.state.params;
     const { decks } = this.props; 
-    // console.log('****deckindividual');
-    // console.log(this.props);
+    console.log('****deckindividual');
+    console.log(this.props);
     // console.log(deckKey);
     return (
       <View style={styles.container}>
@@ -61,8 +61,11 @@ const styles = StyleSheet.create({
 //     decks
 //   }
 // }
-function mapStateToProps (state) {
-  return { decks: state.decks };
+// function mapStateToProps (state) {
+//   return { decks: state.decks };
+// }
+function mapStateToProps (decks) {
+  return { decks };
 }
 
 export default connect(mapStateToProps)(DeckIndividual);
