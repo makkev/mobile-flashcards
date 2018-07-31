@@ -46,3 +46,14 @@ export function createDeck (title) {
     }
   }));
 }
+
+export  function addCardToDeck (deckKey, newCard) {
+  return AsyncStorage.getItem(DATA_STORAGE_KEY)
+    .then(items => JSON.parse(items))
+    .then(items => {
+      items[deckKey].questions.push(newCard);
+      AsyncStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(items));
+      return items;
+    });
+
+}

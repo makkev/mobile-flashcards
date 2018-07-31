@@ -20,11 +20,13 @@ function deck (state = {}, action ) {
 
     case ADD_CARD:
       const { question, answer, deckKey } = action.card;
+      console.log(action.card);
+      console.log(state);
       return {
         ...state,
         [deckKey] : {
-          ...state[deckKey],
-          questions: [...state[deckKey].questions, { question, answer }]
+          ...state.decks[deckKey],
+          questions: [...state.decks[deckKey].questions, { question, answer }]
         }
       }
 

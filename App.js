@@ -9,6 +9,7 @@ import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { purple, white, blue } from './utils/colors';
 import DeckNew from './components/DeckNew';
 import DeckIndividual from './components/DeckIndividual';
+import AddCard from './components/AddCard';
 
 const Tabs = TabNavigator({
   DeckList: {
@@ -64,7 +65,17 @@ const MainNavigator = StackNavigator({
         backgroundColor: purple,
       }
     }
-  }
+  },
+  AddCard: {
+    screen: AddCard,
+      navigationOptions: {
+        title: 'Add Card',
+        headerTintColor: white,
+        headertStyle: {
+          backgroundColor: purple,
+        }
+      }
+  },
 })
 
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Text, View, StyleSheet, Button, TextInput }  from 'react-native';
 import { deckNew }from '../actions';
-import { createDeck } from '../utils/api'
+import { createDeck } from '../utils/api';
 
 class DeckNew extends React.Component {
 
@@ -14,8 +14,8 @@ class DeckNew extends React.Component {
     const { title } = this.state;
     createDeck(title);
     this.props.dispatch(deckNew(title));
-    this.props.navigation.navigate('DeckIndividual', { deckKey: title })
-    this.setState({ text: '' });
+    this.props.navigation.navigate('DeckIndividual', { title })
+    this.setState({ title: '' });
   }
 
   render() {
