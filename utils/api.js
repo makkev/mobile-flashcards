@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native'
 // import { sample } from '../node_modules/rxjs/operator/sample';
-const DATA_STORAGE_KEY = 'KM: decks';
+const DATA_STORAGE_KEY = 'KM: deck2';
 
 const sampleData = {
   React: {
