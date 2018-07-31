@@ -18,12 +18,13 @@ class DeckList extends React.Component {
           const { title, questions } = decks[deckKey];
           return (
             <View key={deckKey}>
-              <Text>{title}</Text>
-              <Text>{questions.length}</Text>
-              <Button 
-                onPress={() => this.props.navigation.navigate('DeckIndividual', { deckKey })} 
-                title='View Deck'>
-              </Button>
+              <Text
+                style={styles.deckTitle} 
+                onPress={() => this.props.navigation.navigate('DeckIndividual', { deckKey })}
+              >
+                {title}
+              </Text>
+              <Text>{questions.length}{'\n'}</Text>
             </View>
           )
         })}
@@ -37,6 +38,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  deckTitle: {
+    fontSize: 25,
+    color: 'blue',
+
   }
 });
 

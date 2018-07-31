@@ -1,11 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { View, Text, StyleSheet } from 'react-native';
 import { getData } from '../utils/api';
 
-export default class DeckIndividual extends React.Component {
+class DeckIndividual extends React.Component {
   render() {
     const { deckKey } = this.props.navigation.state.params;
-    const decks = getData();
+    const { decks } = this.props; 
     return (
       <View style={styles.container}>
         <Text>{decks[deckKey].title}</Text>
@@ -22,3 +23,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   }
 })
+
+function mapStateToProps ({ decks }) {
+  return {
+    decks
+  }
+}
+
+export default connect(mapStateToProps)(DeckIndividual);

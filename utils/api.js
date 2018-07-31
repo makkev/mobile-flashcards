@@ -27,7 +27,7 @@ const sampleData = {
   }
 }
 
-// export const getData = () => sampleData;
+export const getData = () => sampleData;
 
 // export function getDecks () {
 //   AsyncStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(sampleData));
@@ -36,4 +36,13 @@ const sampleData = {
 
 export function getDecks () {
   return AsyncStorage.getItem(DATA_STORAGE_KEY).then(items => JSON.parse(items));
+}
+
+export function createDeck (title) {
+  return AsyncStorage.mergeItem(DATA_STORAGE_KEY, JSON.stringify({
+    [title]: {
+      title: title,
+      questions: [],
+    }
+  }));
 }
