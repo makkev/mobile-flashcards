@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
 // function mapStateToProps (state) {
 //   return { decks: state.decks };
 // }
-function mapStateToProps (decks) {
-  return { decks };
+function mapStateToProps (state) {
+  return { decks: state };
 }
 
 // function mapDispatchToProps (dispatch) {
