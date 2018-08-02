@@ -25,7 +25,7 @@ class DeckNew extends React.Component {
       this.setState({ validationError: 'Please enter deck title'});
       return false;
     } else if (title in decks) {
-      this.setState({ validationError: 'Already exist. Choose anothe deck title.' });
+      this.setState({ validationError: 'Already exist. Choose another deck title.' });
       return false;
     } else {
       this.setState({ validationError: ''});
@@ -56,7 +56,7 @@ class DeckNew extends React.Component {
             value={this.state.title}
           >
           </TextInput>
-            <Text style={{ color: '#cb4b16' }}>{this.state.validationError}</Text>}
+            <Text style={{ color: '#cb4b16' }}>{this.state.validationError}</Text>
           <TouchableOpacity
             onPress={this.submitName}
             style={styles.submitBtn}>
