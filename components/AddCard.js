@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavigationActions } from 'react-navigation';
-import { orange, white } from '../utils/colors';
 import { addCardToDeck } from '../utils/api';
 import { connect } from 'react-redux';
 import { addCard } from '../actions';
@@ -18,12 +17,10 @@ class AddCard extends React.Component {
   state = {
     question: '',
     answer: '',
-    // correctAnswer: '',
   }
 
   submitCard = (deckKey) => {
     const { question, answer } = this.state;
-    // console.log(deckKey);
     this.props.dispatch(addCard({ question, answer, deckKey }));
     addCardToDeck(deckKey, {question, answer});
     this.setState({ question: '', answer: ''});
@@ -81,7 +78,6 @@ const styles = StyleSheet.create({
     color: '#268bd2',
   },
   input: {
-    // fontSize: 15,
     width: 350,
     height: 100,
     padding: 8,
@@ -109,9 +105,6 @@ const styles = StyleSheet.create({
 
 })
 
-// function mapStateToProps (state) {
-//   return { decks: state.decks };
-// }
 function mapStateToProps (state) {
   return { decks: state };
 }

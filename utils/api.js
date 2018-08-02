@@ -1,26 +1,26 @@
 import { AsyncStorage } from 'react-native'
 const DATA_STORAGE_KEY = 'KM: deck3';
 
-const sampleData = {
-  React: [
-    {
-      question: 'What is React?',
-      answer: 'A library for managing user interfaces'
-    },
-    {
-      question: 'Where do you make Ajax requests in React?',
-      answer: 'The componentDidMount lifecycle event'
-    }
-  ],
-  Javascript: [
-    {
-      question: 'What is a closure?',
-      answer: 'The combination of a function and the lexical environment within which that function was declared.'
-    }
-  ],
-}
+// const sampleData = {
+//   React: [
+//     {
+//       question: 'What is React?',
+//       answer: 'A library for managing user interfaces'
+//     },
+//     {
+//       question: 'Where do you make Ajax requests in React?',
+//       answer: 'The componentDidMount lifecycle event'
+//     }
+//   ],
+//   Javascript: [
+//     {
+//       question: 'What is a closure?',
+//       answer: 'The combination of a function and the lexical environment within which that function was declared.'
+//     }
+//   ],
+// }
 
-export const getData = () => sampleData;
+// export const getData = () => sampleData;
 
 // export function getDecks () {
 //   AsyncStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(sampleData));

@@ -2,7 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavigationAction} from 'react-navigation';
 import { View, Text, TouchableOpacity, KeyboardAvoidingView, StyleSheet } from 'react-native';
-import ActionButton from './ActionButton';
+import {
+  getDailyReminderValue,
+  clearLocalNotification,
+  setLocalNotification,
+} from '../utils/helpers';
 
 
 class Quiz extends React.Component {
@@ -21,6 +25,10 @@ class Quiz extends React.Component {
     if (correct) this.setState({ score : this.state.score + 1})
     this.setState({ qNum: this.state.qNum + 1 });
     this.setState({ showAnswer: false });
+    if (this.state.qNum >= this.props.decks[this.props.navigation.state.params.deckKey].length ) {
+      clearLocalNotification()
+        .then(setLocalNotification)
+    }
   }
 
   startAgain = () => {
@@ -33,12 +41,9 @@ class Quiz extends React.Component {
 
 
   render () {
-    // console.log(this.props);
-    // console.log(this.props.navigation.state.params);
     const decks = this.props.decks;
     const key = this.props.navigation.state.params.deckKey;
     qNum = this.state.qNum;
-    // console.log(this.props.navigation.state.params);
 
     return (
       <View style={styles.container}>
@@ -69,7 +74,7 @@ class Quiz extends React.Component {
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={styles.submitBtn}
+              style={[styles.submitBtn, { backgroundColor: '#dc322f'}]}
               onPress={() => this.processAnswer(false)}
             >
               <Text style={styles.submitBtnText}>Incorrect</Text>
@@ -84,13 +89,13 @@ class Quiz extends React.Component {
               style={styles.submitBtn}
               onPress={() => this.props.navigation.navigate('DeckIndividual', { deckKey: key })}
             >
-              <Text style={styles.submitBtnText}>Back</Text>
+              <Text style={styles.submitBtnText}>Back To Deck</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.submitBtn}
               onPress={() => this.startAgain()}
             >
-              <Text style={styles.submitBtnText}>Try Again</Text>
+              <Text style={styles.submitBtnText}>Restart Quiz</Text>
             </TouchableOpacity>
               </View>
         }
@@ -107,7 +112,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee8d5',
   },
   submitBtn: {
-    borderColor: '#268bd2',
     backgroundColor: '#268bd2',
     padding: 10,
     borderRadius: 10,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Text, View, StyleSheet, Button, TouchableOpacity }  from 'react-native';
-import { getData, getDecks } from '../utils/api';
+import { getDecks } from '../utils/api';
 import { receiveDecks } from '../actions/index';
 
 class DeckList extends React.Component {
@@ -9,14 +9,11 @@ class DeckList extends React.Component {
     getDecks().then(decks => this.props.receiveDecks(decks));
   }
   render() {
-
-    // console.log(this.props);
     const { decks } = this.props;
     return (
       <View style={styles.container}>
 
         {decks && Object.keys(decks).map(deckKey => {
-          // const { title, questions } = decks[deckKey];
           return (
             <View key={deckKey}>
             <TouchableOpacity
@@ -69,17 +66,8 @@ const styles = StyleSheet.create({
 
 });
 
-// function mapStateToProps (state) {
-//   return { decks: state.decks };
-// }
 function mapStateToProps (state) {
   return { decks: state };
 }
 
-// function mapDispatchToProps (dispatch) {
-//   return { receiveAllDecks: decks => dispatch(receiveDecks(decks)) }
-// }
- 
-
 export default connect(mapStateToProps, { receiveDecks })(DeckList);
-// export default connect()(DeckList);

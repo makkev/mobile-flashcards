@@ -6,11 +6,12 @@ import { StyleSheet, Text, View, Platform } from 'react-native';
 import DeckList from './components/DeckList';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
-import { purple, white, blue } from './utils/colors';
 import DeckNew from './components/DeckNew';
 import DeckIndividual from './components/DeckIndividual';
 import AddCard from './components/AddCard';
 import Quiz from './components/Quiz';
+import { setLocalNotification } from './utils/helpers';
+
 
 const Tabs = TabNavigator({
   DeckList: {
@@ -32,12 +33,12 @@ const Tabs = TabNavigator({
 }, 
   {
     tabBarOptions: {
-      activeBackgroundColor: Platform.OS === 'ios' ? purple : white,
-      // activeBackgroundColor: purple,
+      activeBackgroundColor: Platform.OS === 'ios' ? '#eee8d5' : 'white',
+      activeTintColor: Platform.OS === 'ios' ? '#d33682' : 'white',
+      inactiveTintColor: 'gray',
       style: {
         height: 56,
-        backgroundColor: Platform.OS === 'ios' ? '#eee8d5': '#268bd2',
-        // backgroundColor: '#eee8d5',
+        backgroundColor: Platform.OS === 'ios' ? '#002b36': '#268bd2',
         shadowColor: 'rgba(0, 0, 0, 0.24)',
         shadowOffset: {
           width: 0,
@@ -56,18 +57,14 @@ const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs,
     navigationOptions: {
-      // title: 'Deck List',
-      // headerTintColor: '#586e75',
         headerStyle: {
           backgroundColor: '#eee8d5',
         }
-      // header: null,
     }
   },
   DeckIndividual: {
     screen: DeckIndividual,
     navigationOptions: {
-      // headerTintColor: white,
       headerStyle: {
         backgroundColor: '#eee8d5',
       }
@@ -97,6 +94,11 @@ const MainNavigator = StackNavigator({
 
 
 export default class App extends React.Component {
+
+  componentDidMount () {
+    setLocalNotification();
+  }
+
   render() {
     store = createStore(reducer);
     return (
@@ -112,8 +114,5 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
   },
 });
