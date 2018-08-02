@@ -6,24 +6,43 @@ import {
   Text,
   View,
   StyleSheet,
-  Button,
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
 }  from 'react-native';
+import DeckList from './DeckList';
 
 class DeckNew extends React.Component {
 
   state = {
-    title: ''
+    title: '',
+    validationError: '',
+  }
+
+  validate(title) {
+    const { decks } = this.props;
+    if (title == '') {
+      this.setState({ validationError: 'Please enter deck title'});
+      return false;
+    } else if (title in decks) {
+      this.setState({ validationError: 'Already exist. Choose anothe deck title.' });
+      return false;
+    } else {
+      this.setState({ validationError: ''});
+      return true;
+    }
   }
 
   submitName = () => {
     const { title } = this.state;
-    createDeck(title);
-    this.props.dispatch(deckNew(title));
-    this.props.navigation.navigate('DeckIndividual', { deckKey: title })
-    this.setState({ title: '' });
+    if (this.validate(title)) {
+      this.validate(title);
+      createDeck(title);
+      this.props.dispatch(deckNew(title));
+      this.props.navigation.navigate('DeckIndividual', { deckKey: title })
+      this.setState({ title: '' });
+      console.log(this.state.validationError);
+    }
   }
 
   render() {
@@ -37,6 +56,7 @@ class DeckNew extends React.Component {
             value={this.state.title}
           >
           </TextInput>
+            <Text style={{ color: '#cb4b16' }}>{this.state.validationError}</Text>}
           <TouchableOpacity
             onPress={this.submitName}
             style={styles.submitBtn}>
@@ -51,7 +71,7 @@ class DeckNew extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#eee8d5',
   },
@@ -62,7 +82,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'white',
     backgroundColor: 'white',
-    margin: 50,
+    margin: 20,
     borderRadius: 8,
   },
   title: {
@@ -75,7 +95,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     height: 50,
-    margin: 5,
+    margin: 20,
     width: 200,
   },
   submitBtnText: {
@@ -86,4 +106,8 @@ const styles = StyleSheet.create({
 
 });
 
-export default connect()(DeckNew);
+function mapStateToProps (state) {
+  return { decks: state };
+}
+
+export default connect(mapStateToProps)(DeckNew);

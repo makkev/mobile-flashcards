@@ -17,16 +17,28 @@ class AddCard extends React.Component {
   state = {
     question: '',
     answer: '',
+    validationError: '',
+  }
+
+  validate = (question, answer) => {
+    let valid = true;
+    if (question == '' || answer == '') {
+      this.setState({ validationError: 'Please enter both question and answer'});
+      valid = false;
+    }
+    return valid;
   }
 
   submitCard = (deckKey) => {
     const { question, answer } = this.state;
-    this.props.dispatch(addCard({ question, answer, deckKey }));
-    addCardToDeck(deckKey, {question, answer});
-    this.setState({ question: '', answer: ''});
-    this.props.navigation.dispatch(NavigationActions.back({ key: null }));
-
+    if (this.validate(question, answer)) {
+      this.props.dispatch(addCard({ question, answer, deckKey }));
+      addCardToDeck(deckKey, {question, answer});
+      this.setState({ question: '', answer: ''});
+      this.props.navigation.dispatch(NavigationActions.back({ key: null }));
+    }
   }
+
   render() {
     const deckKey = this.props.navigation.state.params.deckKey;
     return (
@@ -52,6 +64,10 @@ class AddCard extends React.Component {
             >
             </TextInput>
           </KeyboardAvoidingView>
+
+          { (this.state.validationError) &&
+            <Text style={{ color: '#cb4b16' }}>{this.state.validationError}</Text>}
+          }
 
           <TouchableOpacity style={styles.submitBtn} onPress={() => this.submitCard(deckKey)}>
             <Text style={styles.submitBtnText}>Submit</Text>

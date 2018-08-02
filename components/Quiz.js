@@ -1,6 +1,6 @@
 import React from 'react';
+import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
-import { NavigationAction} from 'react-navigation';
 import { View, Text, TouchableOpacity, KeyboardAvoidingView, StyleSheet } from 'react-native';
 import {
   getDailyReminderValue,
@@ -85,12 +85,14 @@ class Quiz extends React.Component {
             <Text style={{ color: '#586e75', fontSize: 20 }}>{'\n\n'}Completed {key} deck</Text>
             <Text style={{ color: '#586e75', fontSize: 20 }}>{'\n'}Score: {this.state.score}/{decks[key].length}</Text>
             <Text>{'\n'}</Text>
+
             <TouchableOpacity
               style={styles.submitBtn}
-              onPress={() => this.props.navigation.navigate('DeckIndividual', { deckKey: key })}
+              onPress={() => this.props.navigation.dispatch(NavigationActions.back({ key: null }))}
             >
               <Text style={styles.submitBtnText}>Back To Deck</Text>
             </TouchableOpacity>
+            
             <TouchableOpacity
               style={styles.submitBtn}
               onPress={() => this.startAgain()}

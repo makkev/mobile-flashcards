@@ -57,6 +57,8 @@ const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs,
     navigationOptions: {
+        title: 'Main',
+        headerTintColor: '#b58900',
         headerStyle: {
           backgroundColor: '#eee8d5',
         }
@@ -65,6 +67,8 @@ const MainNavigator = StackNavigator({
   DeckIndividual: {
     screen: DeckIndividual,
     navigationOptions: {
+      title: 'Deck',
+      headerTintColor: '#586e75',
       headerStyle: {
         backgroundColor: '#eee8d5',
       }

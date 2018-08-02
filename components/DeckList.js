@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Text, View, StyleSheet, Button, TouchableOpacity }  from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, ScrollView }  from 'react-native';
 import { getDecks } from '../utils/api';
 import { receiveDecks } from '../actions/index';
 
@@ -11,26 +11,27 @@ class DeckList extends React.Component {
   render() {
     const { decks } = this.props;
     return (
-      <View style={styles.container}>
-
-        {decks && Object.keys(decks).map(deckKey => {
-          return (
-            <View key={deckKey}>
-            <TouchableOpacity
-              onPress={() =>
-                this.props.navigation.navigate('DeckIndividual', { deckKey })}
-              style={styles.deckContainer}>
-                <Text
-                  style={styles.deckTitle} 
-                >
-                {deckKey}
-              </Text>
-              <Text style={styles.deckText}>{decks[deckKey].length}{'\n'}</Text>
-            </TouchableOpacity>
-            </View>
-          )
-        })}
-      </View>
+      <ScrollView>
+        <View style={styles.container}>
+          {decks && Object.keys(decks).map(deckKey => {
+            return (
+              <View key={deckKey}>
+              <TouchableOpacity
+                onPress={() =>
+                  this.props.navigation.navigate('DeckIndividual', { deckKey })}
+                style={styles.deckContainer}>
+                  <Text
+                    style={styles.deckTitle} 
+                  >
+                  {deckKey}
+                </Text>
+                <Text style={styles.deckText}>{decks[deckKey].length}{'\n'}</Text>
+              </TouchableOpacity>
+              </View>
+            )
+          })}
+        </View>
+      </ScrollView>
     )
   }
 }
@@ -41,6 +42,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#eee8d5',
+    paddingVertical: 20
   },
   deckTitle: {
     fontSize: 25,
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
     padding: 20,
     height: 80,
 
-  }
+  },
 
 });
 
