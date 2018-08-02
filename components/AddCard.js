@@ -33,38 +33,33 @@ class AddCard extends React.Component {
   render() {
     const deckKey = this.props.navigation.state.params.deckKey;
     return (
-      <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <View style={styles.container}>
           <Text style={styles.title}>Question</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={question => this.setState({ question })}
-            value={this.state.question}
-          >
-          </TextInput>
+            <TextInput
+              multiline = {true}
+              numberOfLines = {4}
+              style={styles.input}
+              onChangeText={question => this.setState({ question })}
+              value={this.state.question}
+            >
+            </TextInput>
 
           <Text style={styles.title}>Answer</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={answer => this.setState({ answer })}
-            value={this.state.answer}
-          >
-          </TextInput>
-          {/*
-          <Text style={styles.title}>Correct Answer</Text>
-          <TextInput
-            style={styles.input}
-            onChange={correctAnswer => this.setState({ correctAnswer: inCorrectAnswer })}
-            value={this.state.correctAnswer}
-          >
-          </TextInput>
-          */}
+          <KeyboardAvoidingView behavior='padding' style={styles.container}>
+            <TextInput
+              multiline = {true}
+              numberOfLines = {4}
+              style={styles.input}
+              onChangeText={answer => this.setState({ answer })}
+              value={this.state.answer}
+            >
+            </TextInput>
+          </KeyboardAvoidingView>
 
           <TouchableOpacity style={styles.submitBtn} onPress={() => this.submitCard(deckKey)}>
             <Text style={styles.submitBtnText}>Submit</Text>
           </TouchableOpacity>
         </View>
-      </KeyboardAvoidingView>
     )
   }
 }
@@ -72,7 +67,7 @@ class AddCard extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#fdf6e3',
   },
@@ -82,26 +77,33 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   title: {
-    fontSize: 20,
-    color: 'black',
-  },
-  submitBtn: {
-    borderWidth: 0.5,
-    borderColor: 'black',
-    padding: 10,
-    backgroundColor: 'orange',
-    borderRadius: 7,
-    overflow: 'hidden',
+    fontSize: 15,
+    color: '#268bd2',
   },
   input: {
-    fontSize: 15,
+    // fontSize: 15,
     width: 350,
-    height: 50,
+    height: 100,
     padding: 8,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: 'white',
+    backgroundColor: 'white',
     margin: 20,
     borderRadius: 7,
+  },
+  submitBtn: {
+    borderColor: '#268bd2',
+    backgroundColor: '#268bd2',
+    padding: 10,
+    borderRadius: 10,
+    height: 50,
+    margin: 5,
+    width: 200,
+  },
+  submitBtnText: {
+    color: 'white',
+    fontSize: 22,
+    textAlign: 'center',
   },
   
 

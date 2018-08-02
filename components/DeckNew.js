@@ -8,7 +8,8 @@ import {
   StyleSheet,
   Button,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  KeyboardAvoidingView,
 }  from 'react-native';
 
 class DeckNew extends React.Component {
@@ -27,20 +28,22 @@ class DeckNew extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>What is the title of your new deck?</Text>
-        <TextInput 
-          onChangeText={title => this.setState({ title })}
-          style={styles.input}
-          value={this.state.title}
-        >
-        </TextInput>
-        <TouchableOpacity
-          onPress={this.submitName}
-          style={styles.submitBtn}>
-            <Text style={styles.submitBtnText}>Submit</Text>
-        </TouchableOpacity>
-      </View>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
+        <View style={styles.container}>
+          <Text style={styles.title}>What is the title of your new deck?</Text>
+          <TextInput 
+            onChangeText={title => this.setState({ title })}
+            style={styles.input}
+            value={this.state.title}
+          >
+          </TextInput>
+          <TouchableOpacity
+            onPress={this.submitName}
+            style={styles.submitBtn}>
+              <Text style={styles.submitBtnText}>Submit</Text>
+          </TouchableOpacity>
+        </View>
+      </KeyboardAvoidingView>
     )
   }
 }
@@ -75,15 +78,6 @@ const styles = StyleSheet.create({
     margin: 5,
     width: 200,
   },
-  // actionBtn: {
-  //   padding: 10,
-  //   borderRadius: 10,
-  //   height: 50,
-  //   margin: 5,
-  //   width: 200,
-  //   color: 'white',
-  //   backgroundColor: '#268bd2',
-  // },
   submitBtnText: {
     color: 'white',
     fontSize: 22,
@@ -91,11 +85,5 @@ const styles = StyleSheet.create({
   },
 
 });
-
-// function mapStateToProps ({decks}) {
-//   return {
-//     decks
-//   }
-// }
 
 export default connect()(DeckNew);

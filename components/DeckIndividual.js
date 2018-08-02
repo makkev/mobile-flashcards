@@ -18,6 +18,7 @@ class DeckIndividual extends React.Component {
         <View>
           <Text style={styles.deckText}>{deckKey}</Text>
           <Text style={styles.deckText}>{decks[deckKey].length}</Text>
+          <Text>{'\n'}</Text>
         </View>
         <ActionButton
           styles={styles}

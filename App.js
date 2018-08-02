@@ -36,8 +36,8 @@ const Tabs = TabNavigator({
       // activeBackgroundColor: purple,
       style: {
         height: 56,
-        // backgroundColor: Platform.OS === 'ios' ? white: purple,
-        backgroundColor: '#eee8d5',
+        backgroundColor: Platform.OS === 'ios' ? '#eee8d5': '#268bd2',
+        // backgroundColor: '#eee8d5',
         shadowColor: 'rgba(0, 0, 0, 0.24)',
         shadowOffset: {
           width: 0,

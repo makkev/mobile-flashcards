@@ -23,6 +23,14 @@ class Quiz extends React.Component {
     this.setState({ showAnswer: false });
   }
 
+  startAgain = () => {
+    this.setState({
+      qNum: 0,
+      score: 0,
+      showAnswer: false
+    });
+  }
+
 
   render () {
     // console.log(this.props);
@@ -37,18 +45,21 @@ class Quiz extends React.Component {
         {qNum < decks[key].length
           ? 
           <View>
-            <Text>Score {this.state.score}</Text>
-            <Text>{qNum + 1}/{decks[key].length}</Text>
+            <Text style={{ color: '#859900', fontSize: 15 }}>Score {this.state.score}</Text>
+            <Text style={{ color: '#859900', fontSize: 15 }}>{qNum + 1}/{decks[key].length}</Text>
+            <Text>{'\n'}</Text>
             {this.state.showAnswer
-              ? <Text>{decks[key][qNum].answer}</Text>
-              : <Text>{decks[key][qNum].question}</Text>
+              ? <Text style={styles.questionAnswerText}>(A) {decks[key][qNum].answer}</Text>
+              : <Text style={styles.questionAnswerText}>(Q) {decks[key][qNum].question}</Text>
             }
+            <Text>{'\n'}</Text>
             
             <TouchableOpacity onPress={() => this.showAnswer()}>
               {this.state.showAnswer
-                ? <Text>Show Question</Text>
-                : <Text>Show Answer</Text>  }
+                ? <Text style={{ color: '#cb4b16', fontSize: 20 }}>Show Question</Text>
+                : <Text style={{ color: '#cb4b16', fontSize: 20 }}>Show Answer</Text>  }
             </TouchableOpacity>
+            <Text>{'\n'}</Text>
 
             <TouchableOpacity
               style={styles.submitBtn}
@@ -63,12 +74,25 @@ class Quiz extends React.Component {
             >
               <Text style={styles.submitBtnText}>Incorrect</Text>
             </TouchableOpacity>
-            </View>
+          </View>
           :
           <View>
-            <Text>Completed {key} deck</Text>
-            <Text>Score: {this.state.score}/{decks[key].length}</Text>
-          </View>
+            <Text style={{ color: '#586e75', fontSize: 20 }}>{'\n\n'}Completed {key} deck</Text>
+            <Text style={{ color: '#586e75', fontSize: 20 }}>{'\n'}Score: {this.state.score}/{decks[key].length}</Text>
+            <Text>{'\n'}</Text>
+            <TouchableOpacity
+              style={styles.submitBtn}
+              onPress={() => this.props.navigation.navigate('DeckIndividual', { deckKey: key })}
+            >
+              <Text style={styles.submitBtnText}>Back</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.submitBtn}
+              onPress={() => this.startAgain()}
+            >
+              <Text style={styles.submitBtnText}>Try Again</Text>
+            </TouchableOpacity>
+              </View>
         }
       </View>
     )
@@ -78,7 +102,7 @@ class Quiz extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#eee8d5',
   },
@@ -96,6 +120,15 @@ const styles = StyleSheet.create({
     fontSize: 22,
     textAlign: 'center',
   },
+  questionAnswerText: {
+    color: '#586e75',
+    backgroundColor: '#fdf6e3',
+    borderColor: '#fdf6e3',
+    width: 330,
+    margin: 5,
+    padding: 20,
+    height: 220,
+  }
 })
 
 function maptStateToProps(state) {
