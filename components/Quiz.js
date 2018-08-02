@@ -20,6 +20,7 @@ class Quiz extends React.Component {
   processAnswer = (correct) => {
     if (correct) this.setState({ score : this.state.score + 1})
     this.setState({ qNum: this.state.qNum + 1 });
+    this.setState({ showAnswer: false });
   }
 
 
@@ -44,23 +45,25 @@ class Quiz extends React.Component {
             }
             
             <TouchableOpacity onPress={() => this.showAnswer()}>
-              {this.state.showAnswer ? <Text>Show Answer</Text> : <Text>Show Question</Text> }
+              {this.state.showAnswer
+                ? <Text>Show Question</Text>
+                : <Text>Show Answer</Text>  }
             </TouchableOpacity>
-            <ActionButton
-              styles={styles}
-              text={'Correct'}
-              color ={'blue'}
+
+            <TouchableOpacity
+              style={styles.submitBtn}
               onPress={() => this.processAnswer(true)}
             >
-            </ActionButton>
-            <ActionButton
-              styles={styles}
-              text={'Incorrect'}
-              color ={'red'}
+              <Text style={styles.submitBtnText}>Correct</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.submitBtn}
               onPress={() => this.processAnswer(false)}
             >
-            </ActionButton>
-          </View>
+              <Text style={styles.submitBtnText}>Incorrect</Text>
+            </TouchableOpacity>
+            </View>
           :
           <View>
             <Text>Completed {decks[key].title} deck</Text>
@@ -76,14 +79,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#eee8d5',
   },
-  actionBtn: {
+  submitBtn: {
+    borderColor: '#268bd2',
+    backgroundColor: '#268bd2',
     padding: 10,
     borderRadius: 10,
     height: 50,
     margin: 5,
     width: 200,
+  },
+  submitBtnText: {
+    color: 'white',
+    fontSize: 22,
+    textAlign: 'center',
   },
 })
 

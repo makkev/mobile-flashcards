@@ -33,9 +33,11 @@ const Tabs = TabNavigator({
   {
     tabBarOptions: {
       activeBackgroundColor: Platform.OS === 'ios' ? purple : white,
+      // activeBackgroundColor: purple,
       style: {
         height: 56,
-        backgroundColor: Platform.OS === 'ios' ? white: purple,
+        // backgroundColor: Platform.OS === 'ios' ? white: purple,
+        backgroundColor: '#eee8d5',
         shadowColor: 'rgba(0, 0, 0, 0.24)',
         shadowOffset: {
           width: 0,
@@ -46,7 +48,6 @@ const Tabs = TabNavigator({
       shadowOpacity: 1,
       showIcon: true,
       showLabel: true,
-
     }
   }
 )
@@ -55,25 +56,30 @@ const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs,
     navigationOptions: {
-      header: null,
+      // title: 'Deck List',
+      // headerTintColor: '#586e75',
+        headerStyle: {
+          backgroundColor: '#eee8d5',
+        }
+      // header: null,
     }
   },
   DeckIndividual: {
     screen: DeckIndividual,
     navigationOptions: {
-      headerTintColor: white,
+      // headerTintColor: white,
       headerStyle: {
-        backgroundColor: purple,
+        backgroundColor: '#eee8d5',
       }
     }
   },
   AddCard: {
     screen: AddCard,
       navigationOptions: {
-        title: 'Add Card',
-        headerTintColor: white,
-        headertStyle: {
-          backgroundColor: purple,
+        title: 'AddCard',
+        headerTintColor: '#586e75',
+        headerStyle: {
+          backgroundColor: '#eee8d5',
         }
       }
   },
@@ -81,9 +87,9 @@ const MainNavigator = StackNavigator({
     screen: Quiz,
     navigationOptions: {
       title: 'Quiz',
-      headerTintColor: 'white',
+      headerTintColor: '#586e75',
       headerStyle: {
-        backgroundColor: 'purple',
+        backgroundColor: '#eee8d5',
       }
     }
   }

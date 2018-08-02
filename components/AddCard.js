@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#fdf6e3',
   },
   submitBtnText: {
     color: 'white',
@@ -93,6 +94,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   input: {
+    fontSize: 45,
     width: 250,
     height: 40,
     padding: 8,

@@ -15,19 +15,21 @@ class DeckIndividual extends React.Component {
     // console.log(deckKey);
     return (
       <View style={styles.container}>
-        <Text>{decks[deckKey].title}</Text>
-        <Text>{decks[deckKey].questions.length}</Text>
+        <View>
+          <Text style={styles.deckText}>{decks[deckKey].title}</Text>
+          <Text style={styles.deckText}>{decks[deckKey].questions.length}</Text>
+        </View>
         <ActionButton
           styles={styles}
           text={'Add Card'}
-          color ={purple}
+          color ={'#268bd2'}
           onPress={() => this.props.navigation.navigate('AddCard', { deckKey })}
         >
         </ActionButton>
         <ActionButton
           styles={styles}
           text={'Start Quiz'}
-          color ={red}
+          color ={'#268bd2'}
           onPress={() => this.props.navigation.navigate('Quiz', { deckKey })}
         >
         </ActionButton>
@@ -41,6 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#fdf6e3',
   },
   actionBtn: {
     padding: 10,
@@ -53,6 +56,13 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 22,
     textAlign: 'center',
+  },
+  deckText: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: 30,
+    color: '#586e75',
+
   }
 })
 

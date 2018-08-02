@@ -1,8 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Text, View, StyleSheet, Button, TextInput }  from 'react-native';
 import { deckNew }from '../actions';
 import { createDeck } from '../utils/api';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Button,
+  TextInput,
+  TouchableOpacity
+}  from 'react-native';
 
 class DeckNew extends React.Component {
 
@@ -28,11 +35,11 @@ class DeckNew extends React.Component {
           value={this.state.title}
         >
         </TextInput>
-        <Button
+        <TouchableOpacity
           onPress={this.submitName}
-          title='submit'
           style={styles.submitBtn}>
-        </Button>
+            <Text style={styles.submitBtnText}>Submit</Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -43,27 +50,45 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#eee8d5',
   },
   input: {
     height: 50,
     width: 250,
     padding: 10,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: 'white',
+    backgroundColor: 'white',
     margin: 50,
     borderRadius: 8,
   },
   title: {
-    fontSize: 25,
-    color: '#333',
+    fontSize: 22,
+    color: '#586e75',
   },
   submitBtn: {
-      borderWidth: 0.5,
-      borderColor: 'black',
-      padding: 10,
-      borderRadius: 7,
-      overflow: 'hidden',
-  }
+    borderColor: '#268bd2',
+    backgroundColor: '#268bd2',
+    padding: 10,
+    borderRadius: 10,
+    height: 50,
+    margin: 5,
+    width: 200,
+  },
+  // actionBtn: {
+  //   padding: 10,
+  //   borderRadius: 10,
+  //   height: 50,
+  //   margin: 5,
+  //   width: 200,
+  //   color: 'white',
+  //   backgroundColor: '#268bd2',
+  // },
+  submitBtnText: {
+    color: 'white',
+    fontSize: 22,
+    textAlign: 'center',
+  },
 
 });
 
