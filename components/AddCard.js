@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   title: {
-    fontSize: 30,
+    fontSize: 20,
     color: 'black',
   },
   submitBtn: {
@@ -94,9 +94,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   input: {
-    fontSize: 45,
-    width: 250,
-    height: 40,
+    fontSize: 15,
+    width: 350,
+    height: 50,
     padding: 8,
     borderWidth: 1,
     borderColor: 'black',

@@ -16,7 +16,7 @@ class DeckList extends React.Component {
       <View style={styles.container}>
 
         {decks && Object.keys(decks).map(deckKey => {
-          const { title, questions } = decks[deckKey];
+          // const { title, questions } = decks[deckKey];
           return (
             <View key={deckKey}>
             <TouchableOpacity
@@ -26,9 +26,9 @@ class DeckList extends React.Component {
                 <Text
                   style={styles.deckTitle} 
                 >
-                {title}
+                {deckKey}
               </Text>
-              <Text style={styles.deckText}>{questions.length}{'\n'}</Text>
+              <Text style={styles.deckText}>{decks[deckKey].length}{'\n'}</Text>
             </TouchableOpacity>
             </View>
           )

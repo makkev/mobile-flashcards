@@ -16,24 +16,30 @@ function deck (state = {}, action ) {
       } 
 
     case DECK_NEW:
-      // deck = {[action.deckKey]: {title: action.deckKey, questions: []}}
+      // return {
+      //   ...state,
+      //   ...{ [action.deckKey] : { title: action.deckKey, questions: [] } }
+      // }
       return {
         ...state,
-        ...{ [action.deckKey] : { title: action.deckKey, questions: [] } }
+        [action.deckKey]: [] 
       }
-      // return  {
-      //   ...state,
-      //   decks: {...state.decks, ...deck}         
-      // }
 
     case ADD_CARD:
       const { question, answer, deckKey } = action.card;
+      // return {
+      //   ...state,
+      //   [deckKey] : {
+      //     ...state[deckKey],
+      //     questions: [...state[deckKey].questions, { question, answer }]
+      //   }
+      // }
       return {
         ...state,
-        [deckKey] : {
+        [deckKey] : [
           ...state[deckKey],
-          questions: [...state[deckKey].questions, { question, answer }]
-        }
+          { question, answer }
+        ]
       }
 
     default:

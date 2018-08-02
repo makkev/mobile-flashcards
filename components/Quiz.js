@@ -34,14 +34,14 @@ class Quiz extends React.Component {
 
     return (
       <View style={styles.container}>
-        {qNum < decks[key].questions.length
+        {qNum < decks[key].length
           ? 
           <View>
             <Text>Score {this.state.score}</Text>
-            <Text>{qNum + 1}/{decks[key].questions.length}</Text>
+            <Text>{qNum + 1}/{decks[key].length}</Text>
             {this.state.showAnswer
-              ? <Text>{decks[key].questions[qNum].answer}</Text>
-              : <Text>{decks[key].questions[qNum].question}</Text>
+              ? <Text>{decks[key][qNum].answer}</Text>
+              : <Text>{decks[key][qNum].question}</Text>
             }
             
             <TouchableOpacity onPress={() => this.showAnswer()}>
@@ -66,8 +66,8 @@ class Quiz extends React.Component {
             </View>
           :
           <View>
-            <Text>Completed {decks[key].title} deck</Text>
-            <Text>Score: {this.state.score}/{decks[key].questions.length}</Text>
+            <Text>Completed {key} deck</Text>
+            <Text>Score: {this.state.score}/{decks[key].length}</Text>
           </View>
         }
       </View>
